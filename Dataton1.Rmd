@@ -4,6 +4,11 @@ author: "Betsy Velezmoro"
 date: "17/9/2021"
 output: html_document
 ---
+
+```{r}
+library(rio) 
+```
+
 1.Base de datos sobre cronología de epidemias, que contenga información sobre al menos su duración y el patógeno que la ocasionó. 
 
 ```{r}
@@ -38,8 +43,8 @@ convert("dataCentros.csv","dataCentros.sav")
 ```{r}
 library(rio) 
 dataProgramacion=import("https://github.com/betsyvelezmoro/Estad-stica-II/raw/main/TB_PROGRAMACION_VACUNAS.csv")
-export(dataProgramacion,"dataProgramacion.cvs")
-convert("dataProgramacion.cvs","datavacuna.sav")
+export(dataProgramacion,"dataProgramacion.csv")
+convert("dataProgramacion.csv","dataProgramacion.sav")
 ```
 
 5. Un mapa del Perú por distritos.
@@ -47,7 +52,7 @@ convert("dataProgramacion.cvs","datavacuna.sav")
 ```{r}
 library(sp)
 library(rgdal)
-fromGit=("https://github.com/betsyvelezmoro/Estad-stica-II/raw/main/LIMITE_DISTRITAL_2020_INEI_geogpsperu_juansuyo_931381206.json") #link desde github
+fromGit=("https://github.com/betsyvelezmoro/Estad-stica-II/raw/main/LIMITE_DISTRITAL_2020_INEI_geogpsperu_juansuyo_931381206.json")
 wazipMap <- rgdal::readOGR(fromGit,stringsAsFactors = FALSE)
 plot(wazipMap)
 ```
