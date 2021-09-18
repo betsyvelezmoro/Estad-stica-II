@@ -1,0 +1,56 @@
+---
+title: "Dataton 1"
+author: "Betsy Velezmoro"
+date: "17/9/2021"
+output: html_document
+---
+1.Base de datos sobre cronología de epidemias, que contenga información sobre al menos su duración y el patógeno que la ocasionó. 
+
+```{r}
+library(htmltab)
+link= "https://es.wikipedia.org/wiki/Anexo:Cronolog%C3%ADa_de_epidemias"
+path="/html/body/div[3]/div[3]/div[5]/div[1]/table[4]"
+dataE = htmltab(link, path)
+head(dataE)
+export(dataE,"dataE.csv")
+convert("dataE.csv","dataE.sav")
+
+```
+
+2. Base de datos simple que contenga información sobre el número de vacunas aplicadas, el número de personas con una dosis, el número de personas con dos dosis, los vacunados del día de hoy, y las dosis aplicadas en el 8tavo vacunatón.
+
+```{r}
+datavacuna=read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vR15tDhuMeXwK9PGKqc7yKAb9VlAsKijIxeObq0ybHNGXToUX-VE9c6u1TtCiLDzQzr-I2xqW4fFQ1Q/pub?gid=0&single=true&output=csv")
+export(datavacuna,"datavacuna.csv")
+convert("datavacuna.csv","datavacuna.sav")
+```
+
+3. Base de datos sobre los Centros de Vacunación COVID-19 en el Perú
+```{r}
+library(rio) 
+dataCentros=import("https://github.com/betsyvelezmoro/Estad-stica-II/raw/main/TB_CENTRO_VACUNACION.csv")
+export(dataCentros,"dataCentros.csv")
+convert("dataCentros.csv","dataCentros.sav")
+```
+
+
+4. Base de datos sobre la Programación de la Vacunación COVID-19 en el Perú
+```{r}
+library(rio) 
+dataProgramacion=import("https://github.com/betsyvelezmoro/Estad-stica-II/raw/main/TB_PROGRAMACION_VACUNAS.csv")
+export(dataProgramacion,"dataProgramacion.cvs")
+convert("dataProgramacion.cvs","datavacuna.sav")
+```
+
+5. Un mapa del Perú por distritos.
+
+```{r}
+library(sp)
+library(rgdal)
+fromGit=("https://github.com/betsyvelezmoro/Estad-stica-II/raw/main/LIMITE_DISTRITAL_2020_INEI_geogpsperu_juansuyo_931381206.json") #link desde github
+wazipMap <- rgdal::readOGR(fromGit,stringsAsFactors = FALSE)
+plot(wazipMap)
+```
+
+
+
